@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'; 
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
@@ -144,4 +145,12 @@ function LightbulbIcon(props) {
       </svg>
     );
   }
+  
+
+  LightbulbIcon.propTypes = {
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    fill: PropTypes.string,
+    className: PropTypes.string,
+  };
   
