@@ -5,10 +5,6 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import React from 'react';
 
 
-interface LightbulbIconProps {
-  [key: string]: any; // This allows any other additional props
-}
-
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -110,6 +106,9 @@ export default function Example() {
               </a>
 
             </div>
+            <p className="mt-6 text-base leading-6 text-gray-600">
+            PS. There are only limited seats available.
+            </p>
           </div>
         </div>
         <div
@@ -131,7 +130,7 @@ export default function Example() {
 
 
 
-const LightbulbIcon: React.FC<LightbulbIconProps> = (props) => {
+function LightbulbIcon(props) {
     return (
       <svg
         {...props}
@@ -151,12 +150,3 @@ const LightbulbIcon: React.FC<LightbulbIconProps> = (props) => {
       </svg>
     );
   }
-  
-
-  LightbulbIcon.propTypes = {
-    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    fill: PropTypes.string,
-    className: PropTypes.string,
-  };
-  
