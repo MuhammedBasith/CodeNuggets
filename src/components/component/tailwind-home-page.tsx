@@ -2,6 +2,12 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'; 
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import React from 'react';
+
+
+interface LightbulbIconProps {
+  [key: string]: any; // This allows any other additional props
+}
 
 
 export default function Example() {
@@ -125,7 +131,7 @@ export default function Example() {
 
 
 
-function LightbulbIcon(props) {
+const LightbulbIcon: React.FC<LightbulbIconProps> = (props) => {
     return (
       <svg
         {...props}
