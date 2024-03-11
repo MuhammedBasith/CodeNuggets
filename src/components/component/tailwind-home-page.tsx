@@ -130,7 +130,7 @@ export default function Example() {
 
 
 
-function LightbulbIcon(props) {
+function LightbulbIcon(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) {
     return (
       <svg
         {...props}
