@@ -67,7 +67,7 @@ export default function SignupFormDemo() {
               id="referralCode"
               placeholder="(Optional)"
               type="text"
-              value={formData.referralCode}
+              value={formData.referralCode || ''}
               onChange={handleChange}
             />
           </LabelInputContainer>
