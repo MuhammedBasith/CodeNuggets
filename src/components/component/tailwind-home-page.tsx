@@ -106,7 +106,7 @@ export default function Example() {
               </a>
 
             </div>
-            <p className="mt-6 text-base leading-6 text-gray-600">
+            <p className="mt-6 text-sm leading-6 text-gray-500">
             PS. There are only limited seats available.
             </p>
           </div>
@@ -130,7 +130,7 @@ export default function Example() {
 
 
 
-function LightbulbIcon(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) {
+function LightbulbIcon(props) {
     return (
       <svg
         {...props}

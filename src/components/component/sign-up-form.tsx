@@ -13,13 +13,13 @@ export default function SignupFormDemo() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
       <div className="max-w-xl w-full mx-4 md:mx-auto mt-0 md:mt-16 rounded-lg p-4 md:p-8 shadow-input bg-white dark:bg-black">
-      <h1 className="text-2xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-4">
+        <h1 className="text-2xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-4">
           Register for Exclusive Python Live Class
         </h1>
         <p className="text-center text-gray-700 dark:text-gray-300 text-sm mb-6">
-          Join our community and unlock exclusive benefits today! Act now to secure your spot.
+          Join our community and unlock exclusive benefits today! Act now to secure your spot
         </p>
-        <form className="my-8" onSubmit={handleSubmit}>
+        <form className="my-8" onSubmit={handleSubmit} style={{marginBottom: '10px'}}>
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
             <LabelInputContainer>
               <Label htmlFor="firstname">Full name</Label>
@@ -28,12 +28,17 @@ export default function SignupFormDemo() {
           </div>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="email">Email Address</Label>
-            <Input id="email" placeholder="learnpython@gmal.com" type="email" />
+            <Input id="email" placeholder="learnpython@gmail.com" type="email" />
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="password">Phone Number</Label>
+            <Label htmlFor="number">Phone Number</Label>
             <Input id="number" placeholder="9744159754" type="tel" />
           </LabelInputContainer>
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="clgname">College Name</Label>
+            <Input id="clgname" placeholder="College of Engineering Trivandrum" type="text" />
+          </LabelInputContainer>
+          
           {/* <LabelInputContainer className="mb-4">
             <Label htmlFor="liveclassdate">Date of Live Class</Label>
             <Input id="liveclassdate" type="date" />
@@ -48,12 +53,15 @@ export default function SignupFormDemo() {
           </LabelInputContainer>
 
           <button
-  className="relative group/btn bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] hover:scale-105 transition-transform duration-300"
-  type="submit"
+            className="relative group/btn bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] hover:scale-105 transition-transform duration-300"
+            type="submit"
 >
-  Sign up &rarr;
-  <BottomGradient />
-</button>
+            Sign up &rarr;
+            <BottomGradient />
+            </button>
+            <p className="flex items-center justify-center mt-6 text-sm leading-6 text-gray-500">
+            PS. There are only limited seats available.
+            </p>
 
         </form>
       </div>
