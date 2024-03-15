@@ -16,7 +16,7 @@ export default function SignupFormDemo() {
     email: "",
     phoneNumber: "",
     collegeName: "",
-    referralCode: "" || search,
+    referralCode: null || search,
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
