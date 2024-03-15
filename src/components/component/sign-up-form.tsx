@@ -5,8 +5,19 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { cn } from "@/utils/cn";
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
+
 
 export default function SignupFormDemo() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SignupFormContent />
+    </Suspense>
+  );
+}
+
+
+function SignupFormContent() {
   const searchParams = useSearchParams()
   const search = searchParams.get('ref')
 
