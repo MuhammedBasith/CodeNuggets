@@ -7,7 +7,16 @@ import { cn } from "@/utils/cn";
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 
+
 export default function SignupFormDemo() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SignupFormContent />
+    </Suspense>
+  );
+}
+
+function SignupFormContent() { // Moved the content into a separate component
   const searchParams = useSearchParams()
   const search = searchParams.get('ref')
   const [formData, setFormData] = useState({
@@ -91,7 +100,7 @@ export default function SignupFormDemo() {
                 type="submit"
                 disabled={loading} // Disable the button when loading state is true to prevent multiple submissions
               >
-                Pay ₹29  &rarr;
+                Pay ₹29 &rarr;
                 <BottomGradient />
               </button>
               <p className="flex items-center justify-center mt-6 text-sm leading-6 text-gray-500">
