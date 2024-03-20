@@ -7,21 +7,9 @@ import { cn } from "@/utils/cn";
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 
-
 export default function SignupFormDemo() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <SignupFormContent />
-    </Suspense>
-  );
-}
-
-
-function SignupFormContent() {
   const searchParams = useSearchParams()
   const search = searchParams.get('ref')
-
-
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -30,10 +18,19 @@ function SignupFormContent() {
     referralCode: null || search,
   });
 
+  const [loading, setLoading] = useState(false);
+
+
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
+    setLoading(true); // Set loading state to true when the form is submitted
     // Here you can perform additional validation or submit the form data
+    // For demonstration purposes, let's simulate an API call delay
+    setTimeout(() => {
+      // After a delay, you can reset the loading state to false to stop displaying the loading message
+      // setLoading(false);
+    }, 2000); // Simulating a delay of 2 seconds
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,51 +47,59 @@ function SignupFormContent() {
         <h1 className="text-2xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-4">
           Register for Exclusive Python Live Class
         </h1>
-        <p className="text-center text-gray-700 dark:text-gray-300 text-sm mb-6">
-          Join our community and unlock exclusive benefits today! Act now to secure your spot
-        </p>
-        <form className="my-8" onSubmit={handleSubmit} style={{ marginBottom: '10px' }}>
-          <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-            <LabelInputContainer>
-              <Label htmlFor="fullname">Full name</Label>
-              <Input id="fullname" placeholder="Alan" type="text" value={formData.fullname} onChange={handleChange} required />
-            </LabelInputContainer>
-          </div>
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="email">Email Address</Label>
-            <Input id="email" placeholder="learnpython@gmail.com" type="email" value={formData.email} onChange={handleChange} required />
-          </LabelInputContainer>
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="phoneNumber">Phone Number</Label>
-            <Input id="phoneNumber" placeholder="9744159754" type="tel" value={formData.phoneNumber} onChange={handleChange} required />
-          </LabelInputContainer>
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="collegeName">College Name</Label>
-            <Input id="collegeName" placeholder="College of Engineering Trivandrum" type="text" value={formData.collegeName} onChange={handleChange} required />
-          </LabelInputContainer>
-          <LabelInputContainer className="mb-4">
-            <Label htmlFor="referralCode">Referral Code (Optional)</Label>
-            <Input
-              id="referralCode"
-              placeholder="(Optional)"
-              type="text"
-              value={formData.referralCode || ''}
-              onChange={handleChange}
-            />
-          </LabelInputContainer>
-
-          <button
-            className="relative group/btn bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] hover:scale-105 transition-transform duration-300"
-            type="submit"
-          >
-            Sign up &rarr;
-            <BottomGradient />
-          </button>
-          <p className="flex items-center justify-center mt-6 text-sm leading-6 text-gray-500">
-            PS. There are only limited seats available.
+        {loading ? ( // If loading state is true, display the loading message
+          <p className="text-center text-gray-700 dark:text-gray-300 text-sm mb-6">
+            Go ahead and open your UPI app and make the payment.
           </p>
+        ) : ( // If loading state is false, display the form
+          <>
+            <p className="text-center text-gray-700 dark:text-gray-300 text-sm mb-6">
+              Join our community and unlock exclusive benefits today! Act now to secure your spot
+            </p>
+            <form className="my-8" onSubmit={handleSubmit} style={{ marginBottom: '10px' }}>
+              <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+                <LabelInputContainer>
+                  <Label htmlFor="fullname">Full name</Label>
+                  <Input id="fullname" placeholder="Alan" type="text" value={formData.fullname} onChange={handleChange} required />
+                </LabelInputContainer>
+              </div>
+              <LabelInputContainer className="mb-4">
+                <Label htmlFor="email">Email Address</Label>
+                <Input id="email" placeholder="learnpython@gmail.com" type="email" value={formData.email} onChange={handleChange} required />
+              </LabelInputContainer>
+              <LabelInputContainer className="mb-4">
+                <Label htmlFor="phoneNumber">Phone Number</Label>
+                <Input id="phoneNumber" placeholder="9744159754" type="tel" value={formData.phoneNumber} onChange={handleChange} required />
+              </LabelInputContainer>
+              <LabelInputContainer className="mb-4">
+                <Label htmlFor="collegeName">College Name</Label>
+                <Input id="collegeName" placeholder="College of Engineering Trivandrum" type="text" value={formData.collegeName} onChange={handleChange} required />
+              </LabelInputContainer>
+              <LabelInputContainer className="mb-4">
+                <Label htmlFor="referralCode">Referral Code (Optional)</Label>
+                <Input
+                  id="referralCode"
+                  placeholder="(Optional)"
+                  type="text"
+                  value={formData.referralCode || ''}
+                  onChange={handleChange}
+                />
+              </LabelInputContainer>
 
-        </form>
+              <button
+                className="relative group/btn bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] hover:scale-105 transition-transform duration-300"
+                type="submit"
+                disabled={loading} // Disable the button when loading state is true to prevent multiple submissions
+              >
+                Pay ₹29  &rarr;
+                <BottomGradient />
+              </button>
+              <p className="flex items-center justify-center mt-6 text-sm leading-6 text-gray-500">
+                PS. There are only limited seats available.
+              </p>
+            </form>
+          </>
+        )}
       </div>
     </div>
   );
