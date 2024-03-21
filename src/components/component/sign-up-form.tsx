@@ -6,11 +6,12 @@ import { Input } from "../ui/input";
 import { cn } from "@/utils/cn";
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
+import { Spinner } from '@chakra-ui/react'
 
 
 export default function SignupFormDemo() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Spinner size='xl' />}>
       <SignupFormContent />
     </Suspense>
   );
