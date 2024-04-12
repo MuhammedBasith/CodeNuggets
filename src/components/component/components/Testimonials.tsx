@@ -137,7 +137,6 @@ export default function Testimonials() {
                 <CardHeader
                   avatar={testimonial.avatar}
                   title={testimonial.name}
-                  subheader={testimonial.occupation}
                 />
                 <img
                   src={logos[index]}
