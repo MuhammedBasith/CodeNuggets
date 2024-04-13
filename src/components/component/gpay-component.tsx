@@ -5,6 +5,16 @@ import { Button } from "@/components/ui/button"
 export default function GpayComponent() {
   const [timeRemaining, setTimeRemaining] = useState(120); // Initial time in seconds (2 minutes)
   const [isPaymentEnabled, setIsPaymentEnabled] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true); // Set loading state to true when the form is submitted
+    // Here you can perform additional validation or submit the form data
+    // For demonstration purposes, let's simulate an API call delay
+  };
 
   const handleDownloadQR = () => {
     // Replace this with the logic to download the QR code image
