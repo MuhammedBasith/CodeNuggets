@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button"
 export default function GpayComponent() {
   const [timeRemaining, setTimeRemaining] = useState(120); // Initial time in seconds (2 minutes)
   const [isPaymentEnabled, setIsPaymentEnabled] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [paymentComplete, setPaymentComplete] = useState(false);
 
 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true); // Set loading state to true when the form is submitted
+    setPaymentComplete(true); // Set loading state to true when the form is submitted
     // Here you can perform additional validation or submit the form data
     // For demonstration purposes, let's simulate an API call delay
   };
@@ -27,18 +27,13 @@ export default function GpayComponent() {
     console.log("Downloading QR code...");
   };
 
-  const handlePaymentDone = () => {
-    // Add logic to handle payment completion
-    console.log("Payment completed!");
-    // You can add additional logic here after payment completion
-  };
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeRemaining(prevTime => {
         if (prevTime > 0) {
           const newTime = prevTime - 1;
-          if (newTime === 90) {
+          if (newTime === 80) {
             setIsPaymentEnabled(true); // Enable payment button when timer reaches 1:30
           }
           return newTime; // Decrease time by 1 second
@@ -53,7 +48,7 @@ export default function GpayComponent() {
   }, []); // Empty dependency array to run effect only once on component mount
 
   // Convert remaining seconds to display format (mm:ss)
-  const formatTime = (seconds) => {
+  const formatTime = (seconds: any) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
@@ -103,10 +98,10 @@ export default function GpayComponent() {
         {/* Payment Done button with dynamic disabled state */}
         <Button
           className={`bg-gray-800 text-white hover:bg-gray-700 mt-5 ${isPaymentEnabled ? '' : 'opacity-50 cursor-not-allowed'}`}
-          onClick={handlePaymentDone}
+          onClick={handleSubmit}
           disabled={!isPaymentEnabled}
         >
-          Payment Done
+          Payment Done  
         </Button>
       </CardFooter>
     </Card>
