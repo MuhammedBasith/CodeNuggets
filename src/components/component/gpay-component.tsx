@@ -1,7 +1,10 @@
+import { useState, useEffect } from 'react';
 import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
 export default function GpayComponent() {
+  const [timeRemaining, setTimeRemaining] = useState(120); // Initial time in seconds (2 minutes)
+
   const handleDownloadQR = () => {
     // Add logic to download the QR code
     console.log("Downloading QR code...");
@@ -10,6 +13,28 @@ export default function GpayComponent() {
   const handlePaymentDone = () => {
     // Add logic to handle payment completion
     console.log("Payment completed!");
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeRemaining(prevTime => {
+        if (prevTime > 0) {
+          return prevTime - 1; // Decrease time by 1 second
+        } else {
+          clearInterval(timer); // Stop the timer when time reaches 0
+          return 0;
+        }
+      });
+    }, 1000); // Update time every second
+
+    return () => clearInterval(timer); // Clean up interval on component unmount
+  }, []); // Empty dependency array to run effect only once on component mount
+
+  // Convert remaining seconds to display format (mm:ss)
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
 
   return (
@@ -45,7 +70,7 @@ export default function GpayComponent() {
         <div className="flex items-center space-x-2">
           {/* Display the remaining time for payment */}
           <span className="text-sm font-medium">Time remaining:</span>
-          <span className="text-sm font-medium">2:00</span>
+          <span className="text-sm font-medium">{formatTime(timeRemaining)}</span>
         </div>
       </CardContent>
       <CardFooter className="border-t justify-center">
