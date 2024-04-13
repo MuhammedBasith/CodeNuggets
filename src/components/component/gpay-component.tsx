@@ -4,22 +4,34 @@ import { Button } from "@/components/ui/button"
 
 export default function GpayComponent() {
   const [timeRemaining, setTimeRemaining] = useState(120); // Initial time in seconds (2 minutes)
+  const [isPaymentEnabled, setIsPaymentEnabled] = useState(false);
 
   const handleDownloadQR = () => {
-    // Add logic to download the QR code
+    // Replace this with the logic to download the QR code image
+    const downloadLink = document.createElement('a');
+    downloadLink.href = './gpay-qr-copy.png'; // Replace with the actual URL of the QR code image
+    downloadLink.download = 'CodeNuggets-Gpay-QR.png'; // Specify the desired file name
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
     console.log("Downloading QR code...");
   };
 
   const handlePaymentDone = () => {
     // Add logic to handle payment completion
     console.log("Payment completed!");
+    // You can add additional logic here after payment completion
   };
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeRemaining(prevTime => {
         if (prevTime > 0) {
-          return prevTime - 1; // Decrease time by 1 second
+          const newTime = prevTime - 1;
+          if (newTime === 90) {
+            setIsPaymentEnabled(true); // Enable payment button when timer reaches 1:30
+          }
+          return newTime; // Decrease time by 1 second
         } else {
           clearInterval(timer); // Stop the timer when time reaches 0
           return 0;
@@ -55,7 +67,7 @@ export default function GpayComponent() {
             alt="QR code"
             className="mx-auto rounded-lg overflow-hidden"
             height="200"
-            src="/placeholder.svg"  // Replace with actual QR code image source
+            src='./gpay-qr-copy.png'
             style={{
               aspectRatio: "200/200",
               objectFit: "cover",
@@ -72,10 +84,18 @@ export default function GpayComponent() {
           <span className="text-sm font-medium">Time remaining:</span>
           <span className="text-sm font-medium">{formatTime(timeRemaining)}</span>
         </div>
+        {/* Message reminding the user not to close or refresh the page */}
+        <p className="text-center text-sm text-gray-500 mt-3">
+          <strong>Do not close or refresh this window until payment is completed.</strong> Once payment is done, return here and click the “Payment Done” button.
+        </p>
       </CardContent>
       <CardFooter className="border-t justify-center">
-        {/* Button to confirm payment completion */}
-        <Button className="bg-gray-800 text-white hover:bg-gray-700 mt-5" onClick={handlePaymentDone}>
+        {/* Payment Done button with dynamic disabled state */}
+        <Button
+          className={`bg-gray-800 text-white hover:bg-gray-700 mt-5 ${isPaymentEnabled ? '' : 'opacity-50 cursor-not-allowed'}`}
+          onClick={handlePaymentDone}
+          disabled={!isPaymentEnabled}
+        >
           Payment Done
         </Button>
       </CardFooter>
