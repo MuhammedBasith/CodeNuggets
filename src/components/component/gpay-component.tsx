@@ -81,8 +81,8 @@ export default function GpayComponent() {
         </Button>
         <div className="flex items-center space-x-2">
           {/* Display the remaining time for payment */}
-          <span className="text-sm font-medium">Time remaining:</span>
-          <span className="text-sm font-medium">{formatTime(timeRemaining)}</span>
+          <span className="text-sm text-red-600 font-medium">Time remaining:</span>
+          <span className="text-sm text-red-600 font-medium">{formatTime(timeRemaining)}</span>
         </div>
         {/* Message reminding the user not to close or refresh the page */}
         <p className="text-center text-sm text-gray-500 mt-3">
