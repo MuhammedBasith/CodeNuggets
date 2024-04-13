@@ -7,7 +7,6 @@ import { cn } from "@/utils/cn";
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import { Spinner } from '@chakra-ui/react'
-import { ReferralComponent } from "./referral-component";
 import { useEffect } from 'react';
 import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -18,7 +17,7 @@ export default function SignupFormDemo() {
     <Suspense fallback={<Spinner size='xl' />}>
       <SignupFormContent />
     </Suspense>
-  );  
+  );
 }
 
 function SignupFormContent() { // Moved the content into a separate component
@@ -33,7 +32,6 @@ function SignupFormContent() { // Moved the content into a separate component
   });
 
   const [loading, setLoading] = useState(false);
-
   const [timeRemaining, setTimeRemaining] = useState(120); // Initial time in seconds (2 minutes)
   const [isPaymentEnabled, setIsPaymentEnabled] = useState(false);
   const [paymentComplete, setPaymentComplete] = useState(false);
@@ -118,15 +116,20 @@ function SignupFormContent() { // Moved the content into a separate component
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
       <div className="max-w-xl w-full mx-4 md:mx-auto mt-0 md:mt-16 rounded-lg p-4 md:p-8 shadow-input bg-white dark:bg-black">
-      {paymentComplete ? (
-        <h1 className="text-2xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-4">
-          {`Hurray! You’re Enrolled.`}
-        </h1>
-        ) : (
+
+        {/* Heading */}
+
+        {paymentComplete ? (
           <h1 className="text-2xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-4">
-            Register for Exclusive Python Live Class
+            {`Hurray! You’re Enrolled.`}
           </h1>
+          ) : (
+            <h1 className="text-2xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-4">
+              Register for Exclusive Python Live Class
+            </h1>
         )}
+
+
         {loading ? (
           <div>
             {paymentComplete ? (
@@ -140,53 +143,17 @@ function SignupFormContent() { // Moved the content into a separate component
             )}
 
             {paymentComplete ? (
-              // <Card>
-              //   <CardContent>
-              //     <Typography variant="h5" component="div" gutterBottom>
-              //       Congratulations! Payment Completed
-              //     </Typography>
-              //     <Typography variant="body1" gutterBottom>
-              //       You are now eligible to join our exclusive Python group and earn money through referrals.
-              //     </Typography>
-              //     <Button
-              //       variant="contained"
-              //       color="primary"
-              //       href="whatsapp://send?phone=<whatsapp-group-link>"
-              //       target="_blank"
-              //       rel="noopener noreferrer"
-              //       fullWidth
-              //       sx={{ mb: 2 }}
-              //     >
-              //       Join WhatsApp Group
-              //     </Button>
-              //     <Typography variant="body1" gutterBottom>
-              //       Your Unique Referral Code:
-              //     </Typography>
-              //     <Typography variant="h6" component="div" gutterBottom>
-              //       {formData.email.split('@')[0]}
-              //     </Typography>
-              //     <Button
-              //       variant="outlined"
-              //       color="primary"
-              //       onClick={copyReferralLink}
-              //       fullWidth
-              //       sx={{ mb: 2 }}
-              //     >
-              //       {copied ? 'Link Copied!' : 'Copy Referral Link'}
-              //     </Button>
-              //   </CardContent>
-              // </Card>
-              <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center">
                     <Card className="w-full max-w-sm mx-auto p-4 bg-white dark:bg-black text-gray-800 dark:text-gray-200 rounded-lg shadow-lg">
-                    <CardHeader className="text-center space-y-4"> {/* Increased space-y to 4 for more spacing */}
-                      <CardTitle className="text-lg font-bold">Payment Completed</CardTitle>
-                      <CardDescription>
-                        Congratulations! You are now eligible to join our exclusive Python group and earn money and exciting rewards through referrals.
-                      </CardDescription>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                        Share your unique referral code with friends to earn cash and rewards together.
-                      </p>
-                    </CardHeader>
+                      <CardHeader className="text-center space-y-4"> {/* Increased space-y to 4 for more spacing */}
+                        <CardTitle className="text-lg font-bold">Payment Completed</CardTitle>
+                        <CardDescription>
+                          Congratulations! You are now eligible to join our exclusive Python group and earn money and exciting rewards through referrals.
+                        </CardDescription>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                          Share your unique referral code with friends to earn cash and rewards together.
+                        </p>
+                      </CardHeader>
                       
                       <CardContent className="flex flex-col items-center space-y-4">
                         <div className="text-center">
@@ -213,6 +180,7 @@ function SignupFormContent() { // Moved the content into a separate component
                           </p>
                         </div>
                       </CardContent>
+                      
                       <CardFooter className="mt-auto">
                         <Button
                           onClick={handleAddToWhatsApp}
@@ -222,59 +190,59 @@ function SignupFormContent() { // Moved the content into a separate component
                         </Button>
                       </CardFooter>
                     </Card>
-              </div>
+                </div>
 
             ): (
-              <Card>
-              <CardHeader>
-                <div className="text-center space-y-2">
-                  <CardTitle className="text-xl">Initiating Payment</CardTitle>
-                  <CardDescription>Scan the QR code to make a payment of ₹29</CardDescription>
-                </div>
-              </CardHeader>
-              <CardContent className="flex flex-col items-center space-y-4">
-                <p className="text-center text-sm">
-                  Click the “Download” button below to save the QR code. Open your UPI app, scan the QR code, and proceed to make the payment of ₹29.
-                </p>
-                <div className="w-full max-w-sm">
-                  {/* Display the QR code image */}
-                  <img
-                    alt="QR code"
-                    className="mx-auto rounded-lg overflow-hidden"
-                    height="200"
-                    src='./gpay-qr-copy.png'
-                    style={{
-                      aspectRatio: "200/200",
-                      objectFit: "cover",
-                    }}
-                    width="200"
-                  />
-                </div>
-                {/* Button to download the QR code */}
-                <Button className="mx-auto bg-gray-800 text-white hover:bg-gray-700" size="sm" onClick={handleDownloadQR}>
-                  Download QR Code
-                </Button>
-                <div className="flex items-center space-x-2">
-                  {/* Display the remaining time for payment */}
-                  <span className="text-sm text-red-600 font-medium">Time remaining:</span>
-                  <span className="text-sm text-red-600 font-medium">{formatTime(timeRemaining)}</span>
-                </div>
-                {/* Message reminding the user not to close or refresh the page */}
-                <p className="text-center text-sm text-gray-500 mt-3">
-                  <strong>Do not close or refresh this window until payment is completed.</strong> Once payment is done, return here and click the “Payment Done” button.
-                </p>
-              </CardContent>
-              <CardFooter className="border-t justify-center">
-                {/* Payment Done button with dynamic disabled state */}
-                <Button
-                  className={`bg-gray-800 text-white hover:bg-gray-700 mt-5 ${isPaymentEnabled ? '' : 'opacity-50 cursor-not-allowed'}`}
-                  onClick={handlePaymentDoneSubmit}
-                  disabled={!isPaymentEnabled}
-                >
-                  Payment Done  
-                </Button>
-              </CardFooter>
-            </Card>
+                <Card>
+                  <CardHeader>
+                    <div className="text-center space-y-2">
+                      <CardTitle className="text-xl">Initiating Payment</CardTitle>
+                      <CardDescription>Scan the QR code to make a payment of ₹29</CardDescription>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex flex-col items-center space-y-4">
+                    <p className="text-center text-sm">
+                      Click the “Download” button below to save the QR code. Open your UPI app, scan the QR code, and proceed to make the payment of ₹29.
+                    </p>
+                    <div className="w-full max-w-sm">
+                      {/* Display the QR code image */}
+                      <img
+                        alt="QR code"
+                        className="mx-auto rounded-lg overflow-hidden"
+                        height="200"
+                        src='./gpay-qr-copy.png'
+                        style={{
+                          aspectRatio: "200/200",
+                          objectFit: "cover",
+                        }}
+                        width="200"
+                      />
+                    </div>
+                    {/* Button to download the QR code */}
+                    <Button className="mx-auto bg-gray-800 text-white hover:bg-gray-700" size="sm" onClick={handleDownloadQR}>
+                      Download QR Code
+                    </Button>
+                    <div className="flex items-center space-x-2">
+                      {/* Display the remaining time for payment */}
+                      <span className="text-sm text-red-600 font-medium">Time remaining:</span>
+                      <span className="text-sm text-red-600 font-medium">{formatTime(timeRemaining)}</span>
+                    </div>
+                    {/* Message reminding the user not to close or refresh the page */}
+                    <p className="text-center text-sm text-gray-500 mt-3">
+                      <strong>Do not close or refresh this window until payment is completed.</strong> Once payment is done, return here and click the “Payment Done” button.
+                    </p>
+                  </CardContent>
+                  <CardFooter className="border-t justify-center">
+                    {/* Payment Done button with dynamic disabled state */}
+                    <Button
+                      className={`bg-gray-800 text-white hover:bg-gray-700 mt-5 ${isPaymentEnabled ? '' : 'opacity-50 cursor-not-allowed'}`}
+                      onClick={handlePaymentDoneSubmit}
+                      disabled={!isPaymentEnabled}
+                    >
+                      Payment Done  
+                    </Button>
+                  </CardFooter>
+                </Card>
 
             )}
           </div>
@@ -327,10 +295,11 @@ function SignupFormContent() { // Moved the content into a separate component
             </form>
           </>
         )}
+
       </div>
     </div>
   );
-}
+}}
 
 const BottomGradient = () => {
   return (
