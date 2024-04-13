@@ -7,6 +7,7 @@ import { cn } from "@/utils/cn";
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import { Spinner } from '@chakra-ui/react'
+import GpayComponent from "./gpay-component";
 
 
 export default function SignupFormDemo() {
@@ -37,10 +38,6 @@ function SignupFormContent() { // Moved the content into a separate component
     setLoading(true); // Set loading state to true when the form is submitted
     // Here you can perform additional validation or submit the form data
     // For demonstration purposes, let's simulate an API call delay
-    setTimeout(() => {
-      // After a delay, you can reset the loading state to false to stop displaying the loading message
-      // setLoading(false);
-    }, 2000); // Simulating a delay of 2 seconds
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,10 +54,13 @@ function SignupFormContent() { // Moved the content into a separate component
         <h1 className="text-2xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-4">
           Register for Exclusive Python Live Class
         </h1>
-        {loading ? ( // If loading state is true, display the loading message
-          <p className="text-center text-gray-700 dark:text-gray-300 text-sm mb-6">
-            Go ahead and open your UPI app and make the payment.
-          </p>
+        {loading ? (
+          <div>
+            <p className="text-center text-gray-700 dark:text-gray-300 text-sm mb-6">
+              Go ahead and open your UPI app and make the payment.
+            </p>
+            <GpayComponent />
+          </div>
         ) : ( // If loading state is false, display the form
           <>
             <p className="text-center text-gray-700 dark:text-gray-300 text-sm mb-6">

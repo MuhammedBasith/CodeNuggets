@@ -70,8 +70,8 @@ export default function Hero() {
             sx={{ pt: 2, width: { xs: '100%', sm: 'auto' } }}
           >
 
-            <Button variant='outlined' color="primary">
-              Upskill
+            <Button href='/upskill' variant='outlined' color="primary">
+              Upskill Your Career
             </Button>
           </Stack>
           <Typography variant="caption" textAlign="center" sx={{ opacity: 0.8 }}>
