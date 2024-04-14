@@ -10,6 +10,8 @@ import { Spinner } from '@chakra-ui/react'
 import { useEffect } from 'react';
 import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { useToast } from '@chakra-ui/react'
+
 
 
 export default function SignupFormDemo() {
@@ -22,6 +24,7 @@ export default function SignupFormDemo() {
 
 function SignupFormContent() { // Moved the content into a separate component
   const searchParams = useSearchParams()
+  const toast = useToast()
   const search = searchParams.get('ref')
   const [formData, setFormData] = useState({
     fullname: "",
@@ -59,9 +62,16 @@ function SignupFormContent() { // Moved the content into a separate component
   };
 
   const handleDownloadQR = () => {
+    toast({
+      title: 'Payment Reminder',
+      description: 'Please remember to click “Payment Done” after completing the payment to finalize your registration.',
+      status: 'info', // Use 'info' status for an informative message
+      duration: 7000, // Duration in milliseconds, adjust as needed
+      isClosable: true, // Allow the toast to be closable by the user
+    });
     // Replace this with the logic to download the QR code image
     const downloadLink = document.createElement('a');
-    downloadLink.href = './gpay-qr-copy.png'; // Replace with the actual URL of the QR code image
+    downloadLink.href = './codenuggets-gpay-qr.png'; // Replace with the actual URL of the QR code image
     downloadLink.download = 'CodeNuggets-Gpay-QR.png'; // Specify the desired file name
     document.body.appendChild(downloadLink);
     downloadLink.click();
@@ -156,8 +166,9 @@ function SignupFormContent() { // Moved the content into a separate component
                       </CardHeader>
                       
                       <CardContent className="flex flex-col items-center space-y-4">
-                        <div className="text-center">
-                          <div className="flex items-center space-x-2 mt-2">
+                      <div className="flex flex-col items-center space-y-4">
+                          {/* Referral Code Display */}
+                          <div className="w-full">
                             <Label className="sr-only" htmlFor="referral-code">
                               Referral Code
                             </Label>
@@ -165,20 +176,26 @@ function SignupFormContent() { // Moved the content into a separate component
                               id="referral-code"
                               readOnly
                               value={formData.email.split('@')[0]} // Replace with your actual referral code from state or props
-                              className="w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md px-3 py-2"
+                              className="w-full text-center bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md px-3 py-2"
                             />
+                          </div>
+
+                          {/* Copy Referral Link Button */}
+                          <div className="w-full">
                             <Button
                               size="sm"
-                              className="bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 dark:focus:ring-gray-700 rounded-md px-3 py-2"
+                              className="w-full bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 dark:focus:ring-gray-700 rounded-md px-3 py-2"
                               onClick={copyReferralLink}
                             >
                               {copied ? 'Link Copied!' : 'Copy Referral Link'}
                             </Button>
                           </div>
-                          <p className="text-sm mt-3">
+                          <p className="text-sm mt-3 text-center">
                             <strong className="text-red-600">Important:</strong> Do not forget to copy the link or remember the code as it is crucial to earn money.
                           </p>
+
                         </div>
+
                       </CardContent>
                       
                       <CardFooter className="mt-auto">
@@ -210,7 +227,7 @@ function SignupFormContent() { // Moved the content into a separate component
                         alt="QR code"
                         className="mx-auto rounded-lg overflow-hidden"
                         height="200"
-                        src='./gpay-qr-copy.png'
+                        src='./codenuggets-gpay-qr.png'
                         style={{
                           aspectRatio: "200/200",
                           objectFit: "cover",
