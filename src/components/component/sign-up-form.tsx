@@ -51,8 +51,8 @@ function SignupFormContent() { // Moved the content into a separate component
     const whatsappLink = `https://wa.me/919544716586?text=Hi%2C%20my%20name%20is%20${formData.fullname}%2C%20Add%20me%20to%20the%20Exclusive%20WhatsApp%20Group%2C`;
     window.location.href = whatsappLink;
   }
-  const handlePaymentDoneSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handlePaymentDoneSubmit: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
     setPaymentComplete(true); // Set loading state to true when the form is submitted
     // Here you can perform additional validation or submit the form data
     // For demonstration purposes, let's simulate an API call delay
