@@ -13,12 +13,11 @@ export default function ContactUsPage() {
   const toast = useToast()
   const router = useRouter()
 
-  const handleSubmit = () => {
-    let event: any;
-    event.preventDefault()
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     toast({
-      title: 'Account created.',
-      description: "We've created your account for you.",
+      title: 'Contact Submitted.',
+      description: "Your form has been successfully submitted. We’ll be in touch soon!",
       status: 'success',
       duration: 9000,
       isClosable: true,
