@@ -14,15 +14,15 @@ export default function ContactUsPage() {
   const router = useRouter()
 
   const handleSubmit = () => {
+    console.log('Here')
     toast({
       title: 'Contact Submitted.',
-      description: "Your form has been successfully submitted. We’ll be in touch soon!",
+      description: "Your form has been successfully submitted. Well be in touch soon!",
       status: 'success',
       duration: 9000,
       isClosable: true,
     })
     router.push('/')
-
   }
 
 
@@ -38,7 +38,7 @@ export default function ContactUsPage() {
               possible.
             </p>
           </div>
-          <form className="space-y-4">
+          <div className="space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="name">Name</Label>
@@ -58,7 +58,18 @@ export default function ContactUsPage() {
               </div>
               <Button
                 className="relative group/btn bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] hover:scale-105 transition-transform duration-300"
-                onClick={handleSubmit}
+                onClick={() =>
+                  {
+                    toast({
+                      title: 'Contact Submitted.',
+                      description: "Your form has been successfully submitted. Well be in touch soon!",
+                      status: 'success',
+                      duration: 9000,
+                      isClosable: true,
+                    })
+                    router.push('/')
+                  }
+                }
               >
                 Submit &rarr;
                 <BottomGradient />
@@ -74,7 +85,7 @@ export default function ContactUsPage() {
                   <span className="text-gray-500 dark:text-gray-400">(+91) 9544716586</span>
                 </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </section>
