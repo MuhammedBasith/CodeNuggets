@@ -13,8 +13,7 @@ export default function ContactUsPage() {
   const toast = useToast()
   const router = useRouter()
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleSubmit = () => {
     toast({
       title: 'Contact Submitted.',
       description: "Your form has been successfully submitted. We’ll be in touch soon!",
@@ -57,14 +56,13 @@ export default function ContactUsPage() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-1">
               <div className="space-y-2">
               </div>
-              <button
+              <Button
                 className="relative group/btn bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] hover:scale-105 transition-transform duration-300"
-                type="submit"
                 onClick={handleSubmit}
               >
                 Submit &rarr;
                 <BottomGradient />
-              </button>
+              </Button>
             </div>
             <div className="flex justify-center items-center space-x-7">
               <div className="flex items-center gap-2">
