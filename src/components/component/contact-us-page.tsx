@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { useToast } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
+import { cn } from "@/utils/cn";
 
 
 export default function ContactUsPage() {
