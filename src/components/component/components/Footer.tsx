@@ -131,7 +131,7 @@ export default function Footer() {
           <Link color="text.secondary" href="#">
             Privacy
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link color="text.secondary" href="/contact">
             Contact
           </Link>
         </Box>
