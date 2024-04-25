@@ -13,6 +13,7 @@ export default function ContactUsPage() {
   const router = useRouter()
 
   const handleSubmit = () => {
+    let event: any;
     event.preventDefault()
     toast({
       title: 'Account created.',
