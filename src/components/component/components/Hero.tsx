@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react';
 import { alpha } from '@mui/material';
 import Box from '@mui/material/Box';
@@ -6,6 +8,7 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
+import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import Spline from '@splinetool/react-spline';
 
@@ -14,6 +17,23 @@ import Spline from '@splinetool/react-spline';
 
 
 export default function Hero() {
+  const [sceneUrl, setSceneUrl] = useState('https://prod.spline.design/bNohavNv4-GoBOwA/scene.splinecode');
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 600) {
+        setSceneUrl('https://prod.spline.design/sN1AsPintz2xQcOX/scene.splinecode'); // Mobile scene URL
+      } else {
+        setSceneUrl('https://prod.spline.design/bNohavNv4-GoBOwA/scene.splinecode'); // Desktop scene URL
+      }
+    };
+
+    handleResize(); // Call it initially to set the right scene based on initial load
+    window.addEventListener('resize', handleResize); // Add event listener for window resize
+
+    return () => window.removeEventListener('resize', handleResize); // Clean up the event listener
+  }, []);
+
   return (
     <Box
       id="hero"
@@ -113,8 +133,14 @@ export default function Hero() {
         /> */}
 
 
-
-        <Spline scene="https://prod.spline.design/bNohavNv4-GoBOwA/scene.splinecode"/>
+        <Box
+          sx={{
+            width: '100%',
+            height: { xs: '400px', sm: '500px', md: '700px' }, // Adjust the height based on screen size
+          }}
+        >
+          <Spline scene={sceneUrl} />
+        </Box>
 
       </Container>
     </Box>
