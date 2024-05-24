@@ -7,6 +7,11 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import Spline from '@splinetool/react-spline';
+
+
+{/* <Spline scene="https://prod.spline.design/kt6uNniTmojQsHqJ/scene.splinecode"/> */}
+
 
 export default function Hero() {
   return (
@@ -31,7 +36,7 @@ export default function Hero() {
           pb: { xs: 8, sm: 12 },
         }}
       >
-        <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }}>
+        {/* <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }}>
           <Typography
             variant="h1"
             sx={{
@@ -105,7 +110,12 @@ export default function Hero() {
                 ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
                 : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
           })}
-        />
+        /> */}
+
+
+
+        <Spline scene="https://prod.spline.design/bNohavNv4-GoBOwA/scene.splinecode"/>
+
       </Container>
     </Box>
   );
