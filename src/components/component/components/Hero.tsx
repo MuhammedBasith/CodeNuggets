@@ -32,7 +32,6 @@ export default function Hero() {
     return () => window.removeEventListener('resize', handleResize); // Clean up the event listener
   }, []);
 
-  // This function will be called when the scene is loaded
   const handleLoad = () => {
     setIsLoading(false);
   };

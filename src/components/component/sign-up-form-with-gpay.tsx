@@ -30,6 +30,7 @@ function SignupFormContent() { // Moved the content into a separate component
     email: "",
     phoneNumber: "",
     collegeName: "",
+    uniquecode: "",
     referralCode: null || search,
   });
 
@@ -124,7 +125,7 @@ function SignupFormContent() { // Moved the content into a separate component
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
-      <div className="max-w-xl w-full mx-4 md:mx-auto mt-0 md:mt-16 rounded-lg p-4 md:p-8 shadow-input bg-white dark:bg-black">
+      <div className="max-w-xl w-full mx-4 md:mx-auto mt-0 md:rounded-lg p-4 md:p-8 shadow-input bg-white dark:bg-black">
 
         {/* Heading */}
 
@@ -271,20 +272,24 @@ function SignupFormContent() { // Moved the content into a separate component
               <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
                 <LabelInputContainer>
                   <Label htmlFor="fullname">Full name</Label>
-                  <Input id="fullname" placeholder="Alan" type="text" value={formData.fullname} onChange={handleChange} required />
+                  <Input id="fullname" placeholder="Your Name" type="text" value={formData.fullname} onChange={handleChange} required />
                 </LabelInputContainer>
               </div>
               <LabelInputContainer className="mb-4">
                 <Label htmlFor="email">Email Address</Label>
-                <Input id="email" placeholder="learnpython@gmail.com" type="email" value={formData.email} onChange={handleChange} required />
+                <Input id="email" placeholder="Your Email Address" type="email" value={formData.email} onChange={handleChange} required />
               </LabelInputContainer>
               <LabelInputContainer className="mb-4">
                 <Label htmlFor="phoneNumber">Phone Number</Label>
-                <Input id="phoneNumber" placeholder="9744159754" type="tel" value={formData.phoneNumber} onChange={handleChange} required />
+                <Input id="phoneNumber" placeholder="Your Phone Number (Without Country Code)" type="tel" value={formData.phoneNumber} onChange={handleChange} required />
               </LabelInputContainer>
               <LabelInputContainer className="mb-4">
                 <Label htmlFor="collegeName">College Name</Label>
-                <Input id="collegeName" placeholder="College of Engineering Trivandrum" type="text" value={formData.collegeName} onChange={handleChange} required />
+                <Input id="collegeName" placeholder="Your College Name" type="text" value={formData.collegeName} onChange={handleChange} required />
+              </LabelInputContainer>
+              <LabelInputContainer className="mb-4">
+                <Label htmlFor="uniquecode">Unique Code</Label>
+                <Input id="uniquecode" placeholder="Provided Code" type="text" value={formData.uniquecode} onChange={handleChange} required />
               </LabelInputContainer>
               <LabelInputContainer className="mb-4">
                 <Label htmlFor="referralCode">Referral Code (Optional)</Label>
@@ -302,7 +307,7 @@ function SignupFormContent() { // Moved the content into a separate component
                 type="submit"
                 disabled={loading} // Disable the button when loading state is true to prevent multiple submissions
               >
-                Pay ₹29 &rarr;
+                Register Now &rarr;
                 <BottomGradient />
               </button>
               <p className="flex items-center justify-center mt-6 text-sm leading-6 text-gray-500">
