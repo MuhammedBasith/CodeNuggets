@@ -13,8 +13,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
 
 const logoStyle = {
-  width: '80px',
-  height: '80px',
+  width: '75px',
+  height: '75px',
   cursor: 'pointer',
 };
 

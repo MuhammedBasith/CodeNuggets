@@ -13,13 +13,18 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/X';
 
 const logoStyle = {
-  width: '90px',
+  width: { xs: '60px', sm: '90px' },
   height: 'auto',
 };
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" mt={1}>
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      mt={1}
+      sx={{ fontSize: { xs: '0.8rem', sm: '1rem' } }}
+    >
       {'Copyright © '}
       <Link href="">CodeNuggets&nbsp;</Link>
       {new Date().getFullYear()}
@@ -35,8 +40,8 @@ export default function Footer() {
         flexDirection: 'column',
         alignItems: 'center',
         gap: { xs: 4, sm: 8 },
-        py: { xs: 8, sm: 10 },
-        textAlign: { sm: 'center', md: 'left' },
+        py: { xs: 4, sm: 10 },
+        textAlign: 'center',
       }}
     >
       <Box
@@ -45,6 +50,7 @@ export default function Footer() {
           flexDirection: { xs: 'column', sm: 'row' },
           width: '100%',
           justifyContent: 'space-between',
+          alignItems: { xs: 'center', sm: 'flex-start' },
         }}
       >
         <Box
@@ -53,30 +59,40 @@ export default function Footer() {
             flexDirection: 'column',
             gap: 4,
             minWidth: { xs: '100%', sm: '60%' },
+            alignItems: { xs: 'center', sm: 'flex-start' },
           }}
         >
-        <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
+          {/* <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <img
                 src={'./logo-t.png'}
                 style={logoStyle}
                 alt="logo of CodeNuggets"
               />
-              <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold', margin: 0 }}>
+              <h1
+                style={{
+                  fontSize: { xs: '1.2rem', sm: '1.5rem' },
+                  fontWeight: 'bold',
+                  margin: 0,
+                }}
+              >
                 CodeNuggets
               </h1>
             </Box>
-            
-          </Box>
+          </Box> */}
         </Box>
-        <Box
+        {/* <Box
           sx={{
             display: { xs: 'none', sm: 'flex' },
             flexDirection: 'column',
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography
+            variant="body2"
+            fontWeight={600}
+            sx={{ fontSize: { xs: '0.8rem', sm: '1rem' } }}
+          >
             Product
           </Typography>
           <Link color="text.secondary" href="#">
@@ -94,15 +110,19 @@ export default function Footer() {
           <Link color="text.secondary" href="#">
             FAQs
           </Link>
-        </Box>
-        <Box
+        </Box> */}
+        {/* <Box
           sx={{
             display: { xs: 'none', sm: 'flex' },
             flexDirection: 'column',
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography
+            variant="body2"
+            fontWeight={600}
+            sx={{ fontSize: { xs: '0.8rem', sm: '1rem' } }}
+          >
             Company
           </Typography>
           <Link color="text.secondary" href="#">
@@ -114,15 +134,19 @@ export default function Footer() {
           <Link color="text.secondary" href="#">
             Press
           </Link>
-        </Box>
-        <Box
+        </Box> */}
+        {/* <Box
           sx={{
             display: { xs: 'none', sm: 'flex' },
             flexDirection: 'column',
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
+          <Typography
+            variant="body2"
+            fontWeight={600}
+            sx={{ fontSize: { xs: '0.8rem', sm: '1rem' } }}
+          >
             Legal
           </Typography>
           <Link color="text.secondary" href="#">
@@ -134,16 +158,16 @@ export default function Footer() {
           <Link color="text.secondary" href="/contact">
             Contact
           </Link>
-        </Box>
+        </Box> */}
       </Box>
       <Box
         sx={{
           display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
           justifyContent: 'space-between',
+          alignItems: 'center',
           pt: { xs: 4, sm: 8 },
           width: '100%',
-          borderTop: '1px solid',
-          borderColor: 'divider',
         }}
       >
         <div>
@@ -160,7 +184,7 @@ export default function Footer() {
         </div>
         <Stack
           direction="row"
-          justifyContent="left"
+          justifyContent="center"
           spacing={1}
           useFlexGap
           sx={{
