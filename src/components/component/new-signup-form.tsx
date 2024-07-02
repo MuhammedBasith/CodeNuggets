@@ -30,11 +30,12 @@ function SignupFormContent() { // Moved the content into a separate component
     email: "",
     phoneNumber: "",
     collegeName: "",
-    uniquecode: "",
     referralCode: null || search,
   });
 
   const [loading, setLoading] = useState(false);
+  const [timeRemaining, setTimeRemaining] = useState(120); // Initial time in seconds (2 minutes)
+  const [isPaymentEnabled, setIsPaymentEnabled] = useState(false);
   const [paymentComplete, setPaymentComplete] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -52,12 +53,65 @@ function SignupFormContent() { // Moved the content into a separate component
     const whatsappLink = `https://wa.me/919544716586?text=Hi%2C%20my%20name%20is%20${formData.fullname}%2C%20Add%20me%20to%20the%20Exclusive%20WhatsApp%20Group%2C`;
     window.location.href = whatsappLink;
   }
+  const handlePaymentDoneSubmit: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
+    setPaymentComplete(true); // Set loading state to true when the form is submitted
+    // Here you can perform additional validation or submit the form data
+    // For demonstration purposes, let's simulate an API call delay
+  };
+
+  const handleDownloadQR = () => {
+    toast({
+      title: 'Payment Reminder',
+      description: 'Please remember to click “Payment Done” after completing the payment to finalize your registration.',
+      status: 'info', // Use 'info' status for an informative message
+      duration: 7000, // Duration in milliseconds, adjust as needed
+      isClosable: true, // Allow the toast to be closable by the user
+    });
+    // Replace this with the logic to download the QR code image
+    const downloadLink = document.createElement('a');
+    downloadLink.href = './codenuggets-gpay-qr.png'; // Replace with the actual URL of the QR code image
+    downloadLink.download = 'CodeNuggets-Gpay-QR.png'; // Specify the desired file name
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+    console.log("Downloading QR code...");
+  };
+
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeRemaining(prevTime => {
+        if (prevTime > 0) {
+          const newTime = prevTime - 1;
+          if (newTime === 80) {
+            setIsPaymentEnabled(true); // Enable payment button when timer reaches 1:30
+          }
+          return newTime; // Decrease time by 1 second
+        } else {
+          clearInterval(timer); // Stop the timer when time reaches 0
+          return 0;
+        }
+      });
+    }, 1000); // Update time every second
+
+    return () => clearInterval(timer); // Clean up interval on component unmount
+  }, []); // Empty dependency array to run effect only once on component mount
+
+  // Convert remaining seconds to display format (mm:ss)
+  const formatTime = (seconds: any) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+  };
+
 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setPaymentComplete(true)
+    setLoading(true); // Set loading state to true when the form is submitted
+    // Here you can perform additional validation or submit the form data
+    // For demonstration purposes, let's simulate an API call delay
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,9 +141,15 @@ function SignupFormContent() { // Moved the content into a separate component
 
         {loading ? (
           <div>
+            {paymentComplete ? (
             <p className="text-center text-gray-700 dark:text-gray-300 text-sm mb-6">
               {`Hi ${formData.fullname}, You are registered for Exclusive Python Live Class!`}
             </p>
+            ): (
+            <p className="text-center text-gray-700 dark:text-gray-300 text-sm mb-6">
+              Go ahead and open your UPI app and make the payment.
+            </p>
+            )}
 
             {paymentComplete ? (
                 <div className="flex items-center justify-center">
@@ -123,7 +183,7 @@ function SignupFormContent() { // Moved the content into a separate component
                           <div className="w-full">
                             <Button
                               size="sm"
-                              className="relative group/btn bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] hover:scale-105 transition-transform duration-300"
+                              className="w-full bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 dark:focus:ring-gray-700 rounded-md px-3 py-2"
                               onClick={copyReferralLink}
                             >
                               {copied ? 'Link Copied!' : 'Copy Referral Link'}
@@ -140,7 +200,7 @@ function SignupFormContent() { // Moved the content into a separate component
                       <CardFooter className="mt-auto">
                         <Button
                           onClick={handleAddToWhatsApp}
-                          className="relative group/btn bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] hover:scale-105 transition-transform duration-300"
+                          className="w-full bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 dark:focus:ring-gray-700 rounded-md px-4 py-2"
                         >
                           Add to WhatsApp Group
                         </Button>
@@ -150,6 +210,54 @@ function SignupFormContent() { // Moved the content into a separate component
 
             ): (
                 <Card>
+                  <CardHeader>
+                    <div className="text-center space-y-2">
+                      <CardTitle className="text-xl">Initiating Payment</CardTitle>
+                      <CardDescription>Scan the QR code to make a payment of ₹29</CardDescription>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex flex-col items-center space-y-4">
+                    <p className="text-center text-sm">
+                      Click the “Download” button below to save the QR code. Open your UPI app, scan the QR code, and proceed to make the payment of ₹29.
+                    </p>
+                    <div className="w-full max-w-sm">
+                      {/* Display the QR code image */}
+                      <img
+                        alt="QR code"
+                        className="mx-auto rounded-lg overflow-hidden"
+                        height="200"
+                        src='./codenuggets-gpay-qr.png'
+                        style={{
+                          aspectRatio: "200/200",
+                          objectFit: "cover",
+                        }}
+                        width="200"
+                      />
+                    </div>
+                    {/* Button to download the QR code */}
+                    <Button className="mx-auto bg-gray-800 text-white hover:bg-gray-700" size="sm" onClick={handleDownloadQR}>
+                      Download QR Code
+                    </Button>
+                    <div className="flex items-center space-x-2">
+                      {/* Display the remaining time for payment */}
+                      <span className="text-sm text-red-600 font-medium">Time remaining:</span>
+                      <span className="text-sm text-red-600 font-medium">{formatTime(timeRemaining)}</span>
+                    </div>
+                    {/* Message reminding the user not to close or refresh the page */}
+                    <p className="text-center text-sm text-gray-500 mt-3">
+                      <strong>Do not close or refresh this window until payment is completed.</strong> Once payment is done, return here and click the “Payment Done” button.
+                    </p>
+                  </CardContent>
+                  <CardFooter className="border-t justify-center">
+                    {/* Payment Done button with dynamic disabled state */}
+                    <Button
+                      className={`bg-gray-800 text-white hover:bg-gray-700 mt-5 ${isPaymentEnabled ? '' : 'opacity-50 cursor-not-allowed'}`}
+                      onClick={handlePaymentDoneSubmit}
+                      disabled={!isPaymentEnabled}
+                    >
+                      Payment Done  
+                    </Button>
+                  </CardFooter>
                 </Card>
 
             )}
@@ -177,10 +285,6 @@ function SignupFormContent() { // Moved the content into a separate component
               <LabelInputContainer className="mb-4">
                 <Label htmlFor="collegeName">College Name</Label>
                 <Input id="collegeName" placeholder="Your College Name" type="text" value={formData.collegeName} onChange={handleChange} required />
-              </LabelInputContainer>
-              <LabelInputContainer className="mb-4">
-                <Label htmlFor="uniquecode">Unique Code</Label>
-                <Input id="uniquecode" placeholder="Provided Code" type="text" value={formData.uniquecode} onChange={handleChange} required />
               </LabelInputContainer>
               <LabelInputContainer className="mb-4">
                 <Label htmlFor="referralCode">Referral Code (Optional)</Label>
