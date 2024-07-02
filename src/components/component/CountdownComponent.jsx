@@ -43,7 +43,7 @@ const Countdown = ({ eventDate }) => {
 
   return (
     <div className="text-green-800 text-sm">
-      {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+      {timerComponents.length ? timerComponents : <span>Times up!</span>}
     </div>
   );
 };
