@@ -194,6 +194,7 @@ function SignupFormContent() {
                       readOnly
                       value={`https://www.codenuggets.studio?ref=${formData.email.split('@')[0]}`}
                       className="w-full text-center bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md px-3 py-2"
+                      style={{ fontSize: '10px' }}
                     />
                   </div>
                   <div className="w-full">
