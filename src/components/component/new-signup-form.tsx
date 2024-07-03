@@ -192,7 +192,7 @@ function SignupFormContent() {
                     <Input
                       id="referral-code"
                       readOnly
-                      value={formData.email.split('@')[0]}
+                      value={`https://www.codenuggets.studio?ref=${formData.email.split('@')[0]}`}
                       className="w-full text-center bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md px-3 py-2"
                     />
                   </div>
