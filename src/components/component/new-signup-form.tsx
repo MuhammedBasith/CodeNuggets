@@ -77,33 +77,47 @@ function SignupFormContent() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setLoading(true)
-    setContinueButtonloading(false)
-    const emailID = formData.email
-
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/pre-submit-form`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email: formData.email })
-    });
-    
-    if (response.status === 201){
-      setLoading(true);
-      setConfirmationPage(true);
-      setLoading(false)
-
-    }else if (response.status === 409){
+    if (formData.referralCode?.startsWith('http')){
       toast({
-        title: 'Email Already Exists.',
-        description: "The email you entered is already registered. Please try using a different email or contact support for assistance.",
+        title: 'Invalid Referral Code',
+        description: "The referral code you entered appears to be a URL, which is not allowed. Please enter a valid referral code or leave the field blank if you don't have one.",
         status: 'error',
         duration: 9000,
         isClosable: true,
       })
       setLoading(false)
+    }else{
+
+      setLoading(true)
+      setContinueButtonloading(false)
+      const emailID = formData.email
+  
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/pre-submit-form`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: formData.email })
+      });
+      
+      if (response.status === 201){
+        setLoading(true);
+        setConfirmationPage(true);
+        setLoading(false)
+  
+      }else if (response.status === 409){
+        toast({
+          title: 'Email Already Exists.',
+          description: "The email you entered is already registered. Please try using a different email or contact support for assistance.",
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        })
+        setLoading(false)
+      }
+
     }
+
 
   };
 
@@ -113,6 +127,7 @@ function SignupFormContent() {
       ...prevData,
       [id]: value,
     }));
+    
   };
 
   const handleContinue = async () => {
@@ -168,7 +183,9 @@ function SignupFormContent() {
   };
 
   useEffect( () => {
-    const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/awake-call`)
+    const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/awake-call`, {method: "GET"}).then((data) => {
+      console.log('Done awake call!')
+    })
   }, [])
 
   return (
@@ -320,7 +337,7 @@ function SignupFormContent() {
 
                 <LabelInputContainer>
                   <Label htmlFor="phoneNumber">Phone Number</Label>
-                  <Input id="phoneNumber" placeholder="Your Phone Number (Without Country Code)" type="tel" value={formData.phoneNumber} onChange={handleChange} required />
+                  <Input id="phoneNumber" placeholder="Your Phone Number (Without Country Code)" type="tel" maxLength={10} pattern="[0-9]{10}" value={formData.phoneNumber} onChange={handleChange} required />
                 </LabelInputContainer>
               </div>
               <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
