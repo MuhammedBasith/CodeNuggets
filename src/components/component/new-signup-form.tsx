@@ -9,6 +9,7 @@ import { Suspense } from 'react';
 import { Spinner } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import Countdown from '../component/CountdownComponent'
+import Confetti from '@/components/component/Confetti'
 import {
   CardTitle,
   CardDescription,
@@ -45,6 +46,7 @@ function SignupFormContent() {
   const [confirmationPage, setConfirmationPage] = useState(false);
   const [paymentComplete, setPaymentComplete] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [confettiActive, setconfettiActive] = useState(false);
 
   const copyReferralLink = () => {
     const referralLink = `${window.location.origin}/upskill?ref=${formData.email.split('@')[0]}`;
@@ -83,11 +85,11 @@ function SignupFormContent() {
       },
       body: JSON.stringify({ email: formData.email })
     });
-
     
     if (response.status === 201){
       setLoading(true);
       setConfirmationPage(true);
+
     }else if (response.status === 409){
       toast({
         title: 'Email Already Exists.',
@@ -108,9 +110,46 @@ function SignupFormContent() {
     }));
   };
 
-  const handleContinue = () => {
-    setPaymentComplete(true);
-    setConfirmationPage(false);
+  const handleContinue = async () => {
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/submit-form`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'fullName': formData.fullname,
+        'email': formData.email,
+        'phoneNumber': formData.phoneNumber,
+        'collegeName': formData.collegeName,
+        'referralCode': formData.referralCode
+      })
+    })
+
+    if (response.status === 200){
+      setPaymentComplete(true);
+      setConfirmationPage(false);
+      setconfettiActive(true)
+      toast({
+        title: 'Registration Successful',
+        description: "You have successfully registered for the event!",
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
+    }else{
+
+      toast({
+        title: 'Registration Failed',
+        description: "Please try again later or contact support for assistance.",
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      })
+      setLoading(false);
+      setConfirmationPage(false);
+    }
+
   };
 
   const handleCancel = () => {
@@ -130,6 +169,9 @@ function SignupFormContent() {
               Hi {formData.fullname}, You are registered for the Exclusive Python Live Class!
             </p>
             <div className="flex items-center justify-center">
+
+              {confettiActive && <Confetti></Confetti>}
+
               <Card className="w-full max-w-sm mx-auto p-4 bg-white dark:bg-black text-gray-800 dark:text-gray-200 rounded-lg shadow-lg">
                 <CardHeader className="text-center space-y-4">
                   <CardTitle className="text-lg font-bold">Thank you for registering!</CardTitle>
