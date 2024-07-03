@@ -43,6 +43,7 @@ function SignupFormContent() {
   });
 
   const [loading, setLoading] = useState(false);
+  const [continueButtonloading, setContinueButtonloading] = useState(false);
   const [confirmationPage, setConfirmationPage] = useState(false);
   const [paymentComplete, setPaymentComplete] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -76,6 +77,7 @@ function SignupFormContent() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true)
     const emailID = formData.email
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/pre-submit-form`, {
@@ -89,6 +91,7 @@ function SignupFormContent() {
     if (response.status === 201){
       setLoading(true);
       setConfirmationPage(true);
+      setLoading(false)
 
     }else if (response.status === 409){
       toast({
@@ -98,6 +101,7 @@ function SignupFormContent() {
         duration: 9000,
         isClosable: true,
       })
+      setLoading(false)
     }
 
   };
@@ -111,6 +115,7 @@ function SignupFormContent() {
   };
 
   const handleContinue = async () => {
+    setContinueButtonloading(true)
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/submit-form`, {
       method: 'POST',
@@ -261,8 +266,19 @@ function SignupFormContent() {
                 </div>
               ))}
               <div className="flex space-x-4">
-                <Button className="w-full bg-gray-800 text-white hover:bg-gray-700 mt-5" onClick={handleContinue}>
-                  Continue
+                <Button className="w-full bg-gray-800 text-white hover:bg-gray-700 mt-5" onClick={handleContinue} disabled={continueButtonloading}>
+                  {continueButtonloading ? (
+                    <div className='flex items-center justify-center'>
+                      <Spinner size="sm" color='white' mr={2} />
+                      Loading...
+                    </div>
+
+                  ): (
+                    <>
+                    Continue
+                    </>
+                  )}
+                  
                 </Button>
                 <Button className="w-full bg-red-600 text-white hover:bg-red-500 mt-5" onClick={handleCancel}>
                   Cancel
@@ -314,9 +330,18 @@ function SignupFormContent() {
                 className="relative group/btn bg-gradient-to-br mt-2 from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] hover:scale-105 transition-transform duration-300"
                 type="submit"
                 disabled={loading}
-                >
-                Register Now &rarr;
-                <BottomGradient />
+              >
+                {loading ? (
+                  <div className="flex items-center justify-center">
+                    <Spinner size="sm" color="white" mr={2} />
+                    Loading...
+                  </div>
+                ) : (
+                  <>
+                    Register Now &rarr;
+                    <BottomGradient />
+                  </>
+                )}
               </Button>
               <p className="flex items-center justify-center mt-6 text-sm leading-6 text-gray-500">
                 PS. There are only limited seats available.
