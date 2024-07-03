@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { cn } from '@/utils/cn';
@@ -78,6 +78,7 @@ function SignupFormContent() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true)
+    setContinueButtonloading(false)
     const emailID = formData.email
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/pre-submit-form`, {
@@ -132,6 +133,7 @@ function SignupFormContent() {
     })
 
     if (response.status === 200){
+      setContinueButtonloading(false)
       setPaymentComplete(true);
       setConfirmationPage(false);
       setconfettiActive(true)
@@ -153,6 +155,8 @@ function SignupFormContent() {
       })
       setLoading(false);
       setConfirmationPage(false);
+      setContinueButtonloading(false)
+
     }
 
   };
@@ -160,7 +164,12 @@ function SignupFormContent() {
   const handleCancel = () => {
     setLoading(false);
     setConfirmationPage(false);
+    setContinueButtonloading(false)
   };
+
+  useEffect( () => {
+    const response = fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/awake-call`)
+  }, [])
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
