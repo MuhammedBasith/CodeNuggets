@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { cn } from '@/utils/cn';
+import InstagramIcon from '../component/InstagramIcon'
+import WhatsAppIcon from '../component/WhatsAppIcon'
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import { Spinner } from '@chakra-ui/react';
@@ -81,6 +83,15 @@ function SignupFormContent() {
       toast({
         title: 'Invalid Referral Code',
         description: "The referral code you entered appears to be a URL, which is not allowed. Please enter a valid referral code or leave the field blank if you don't have one.",
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      })
+      setLoading(false)
+    }else if(formData.referralCode?.trim() === formData.email.split('@')[0]){
+      toast({
+        title: 'Invalid Referral Code',
+        description: "The referral code you entered appears to be yours, which is not allowed. Please enter a valid referral code or leave the field blank if you don't have one.",
         status: 'error',
         duration: 9000,
         isClosable: true,
@@ -240,18 +251,24 @@ function SignupFormContent() {
                   <div className="w-full">
                     <Button
                       size="sm"
-                      className="w-full bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 dark:focus:ring-gray-700 rounded-md px-3 py-2"
+                      className="w-full bg-green-500 text-white hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 dark:focus:ring-green-700 rounded-md px-3 py-2 flex items-center justify-center"
                       onClick={shareOnWhatsApp}
                     >
+                      <span className="mr-2">
+                        <WhatsAppIcon className="w-6 h-6 fill-current" />
+                      </span>
                       Share on WhatsApp
                     </Button>
                   </div>
                   <div className="w-full">
                     <Button
                       size="sm"
-                      className="w-full bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 dark:focus:ring-gray-700 rounded-md px-3 py-2"
+                      className="w-full bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 text-white hover:bg-opacity-90 focus:outline-none focus:ring focus:ring-gray-300 dark:focus:ring-gray-700 rounded-md px-3 py-2 flex items-center justify-center"
                       onClick={shareOnInstagram}
                     >
+                      <span className="mr-2">
+                        <InstagramIcon className="w-5 h-5 fill-current" />
+                      </span>
                       Share on Instagram
                     </Button>
                   </div>
@@ -272,10 +289,10 @@ function SignupFormContent() {
           </>
         ) : confirmationPage ? (
           <>
-            <h1 className="text-2xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-4">
+            <h1 className="text-xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-4">
               Confirm Your Details
             </h1>
-            <p className="text-center text-gray-700 dark:text-gray-300 text-sm mb-6">
+            <p className="text-center text-gray-700 dark:text-gray-300 text-xs md:text-sm mb-6">
               Please review the information below. Once you click “Continue” the data cannot be changed.
             </p>
             <div className="space-y-4">
@@ -286,9 +303,9 @@ function SignupFormContent() {
                 { label: 'College Name', value: formData.collegeName },
                 { label: 'Referral Code (Optional)', value: formData.referralCode || 'N/A' },
               ].map((item, index) => (
-                <div key={index} className="flex justify-between mt-10">
-                  <Label>{item.label}:</Label>
-                  <p className="text-right text-black">{item.value}</p>
+                <div key={index} className="flex justify-between mt-4">
+                  <Label className="text-xs md:text-base">{item.label}:</Label>
+                  <p className="text-right text-black text-xs md:text-base">{item.value}</p>
                 </div>
               ))}
               <div className="flex space-x-4">
@@ -298,13 +315,9 @@ function SignupFormContent() {
                       <Spinner size="sm" color='white' mr={2} />
                       Loading...
                     </div>
-
-                  ): (
-                    <>
-                    Continue
-                    </>
+                  ) : (
+                    <>Continue</>
                   )}
-                  
                 </Button>
                 <Button className="w-full bg-red-600 text-white hover:bg-red-500 mt-5" onClick={handleCancel}>
                   Cancel
@@ -312,6 +325,7 @@ function SignupFormContent() {
               </div>
             </div>
           </>
+
         ) : (
           <>
             <h1 className="text-2xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-4">
