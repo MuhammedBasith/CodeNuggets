@@ -108,7 +108,7 @@ function SignupFormContent() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: formData.email, phoneNumber: formData.phoneNumber })
+        body: JSON.stringify({ email: formData.email, phoneNumber: formData.phoneNumber, referralCode: formData.referralCode })
       });
 
       const data = await response.json()
