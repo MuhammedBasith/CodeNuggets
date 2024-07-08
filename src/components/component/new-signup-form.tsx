@@ -108,8 +108,10 @@ function SignupFormContent() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: formData.email })
+        body: JSON.stringify({ email: formData.email, phoneNumber: formData.phoneNumber })
       });
+
+      const data = await response.json()
       
       if (response.status === 201){
         setLoading(true);
@@ -117,14 +119,31 @@ function SignupFormContent() {
         setLoading(false)
   
       }else if (response.status === 409){
+
+        let issue = ''
+
+        if (data.phoneExists){
+          issue = 'Phone Number'
+        }else if (data.emailExists){
+          issue = 'Email' 
+        } 
+
         toast({
-          title: 'Email Already Exists.',
+          title: `${issue} Already Exists.`,
           description: "The email you entered is already registered. Please try using a different email or contact support for assistance.",
           status: 'error',
           duration: 9000,
           isClosable: true,
         })
         setLoading(false)
+      }else if (response.status === 500){
+        toast({
+          title: 'Internal Server Error.',
+          description: "Something went wrong on our end. Please try again later or contact support for assistance.",
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        })
       }
 
     }
