@@ -1,15 +1,27 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Login from '../../components/component/Login';
 import AdminDashboard from '../../components/component/AdminDashboard';
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    // Check if a token is present in localStorage
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogin = (status) => {
+    setIsLoggedIn(status);
+  };
+
   return (
     <div>
-      {isLoggedIn ? <AdminDashboard /> : <Login onLogin={setIsLoggedIn} />}
+      {isLoggedIn ? <AdminDashboard /> : <Login onLogin={handleLogin} />}
     </div>
   );
 };

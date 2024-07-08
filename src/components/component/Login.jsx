@@ -6,9 +6,21 @@ const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (username === process.env.NEXT_PUBLIC_ADMIN_USERNAME && password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/admin-login`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    });
+
+    const data = await response.json();
+
+    if (response.status === 200 && data.token) {
+      localStorage.setItem('token', data.token);
       onLogin(true);
     } else {
       alert('Invalid credentials');

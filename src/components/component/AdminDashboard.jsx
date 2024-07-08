@@ -7,10 +7,22 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     const fetchPendingUsers = async () => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/pending-registrations`)
-        const data = await response.json()
-        console.log(data)
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/pending-registrations`, {
+        method: 'GET',
+        headers: {
+          'Authorization': token
+        }
+      });
+      const data = await response.json();
+
+      if (response.status === 200) {
+        setPendingUsers(data);
+      } else {
+        alert('Failed to fetch pending registrations.');
+      }
     };
+
     fetchPendingUsers();
   }, []);
 
