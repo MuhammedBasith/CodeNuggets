@@ -114,9 +114,26 @@ function SignupFormContent() {
       const data = await response.json()
       
       if (response.status === 201){
-        setLoading(true);
-        setConfirmationPage(true);
-        setLoading(false)
+        if (formData.referralCode){
+          if(data.referralExists){
+            setLoading(true);
+            setConfirmationPage(true);
+            setLoading(false)
+          }else{
+            toast({
+              title: 'Invalid Referral Code.',
+              description: "The referral code you entered does not exist. Please enter a valid referral code or leave the field blank if you don't have one.",
+              status: 'error',
+              duration: 9000,
+              isClosable: true,
+            })
+            setLoading(false)
+          }
+        }else{
+          setLoading(true);
+          setConfirmationPage(true);
+          setLoading(false)
+        }
   
       }else if (response.status === 409){
 
@@ -144,6 +161,7 @@ function SignupFormContent() {
           duration: 9000,
           isClosable: true,
         })
+        setLoading(false)
       }
 
     }

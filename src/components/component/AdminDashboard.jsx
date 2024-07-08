@@ -40,7 +40,11 @@ const AdminDashboard = () => {
           <li key={user.id} className="mb-4 p-4 bg-white rounded shadow">
             <p><strong>Name:</strong> {user.fullName}</p>
             <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Referred by:</strong> {user.referralCode}</p>
+            {user.referralCode && (
+              <p><strong>Referred by:</strong> {user.referralCode}</p>
+            )}
+            <p><strong>Phone Number:</strong> {user.phoneNumber}</p>
+            <p><strong>College:</strong> {user.collegeName}</p>
             <button
               onClick={() => confirmPayment(user.id)}
               className="mt-2 bg-green-500 text-white px-4 py-2 rounded"
