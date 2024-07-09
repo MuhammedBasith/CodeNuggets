@@ -147,7 +147,7 @@ function SignupFormContent() {
 
         toast({
           title: `${issue} Already Exists.`,
-          description: "The email you entered is already registered. Please try using a different email or contact support for assistance.",
+          description: `The email you entered is already registered. Please try using a different ${issue.toLowerCase()} or contact support for assistance.`,
           status: 'error',
           duration: 9000,
           isClosable: true,

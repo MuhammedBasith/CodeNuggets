@@ -19,8 +19,8 @@ const Home = () => {
   };
 
   return (
-    <div>
-      {isLoggedIn ? <AdminDashboard /> : <Login onLogin={handleLogin} />}
+    <div className='min-h-screen'>
+      {isLoggedIn ? <AdminDashboard onLogout={handleLogin} /> : <Login onLogin={handleLogin} />}
     </div>
   );
 };
