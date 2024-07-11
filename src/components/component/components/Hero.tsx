@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Spline from '@splinetool/react-spline';
 import { Rings } from 'react-loader-spinner'; // Import the loader
 
+
 export default function Hero() {
   const [sceneUrl, setSceneUrl] = useState('https://prod.spline.design/bNohavNv4-GoBOwA/scene.splinecode');
   const [isLoading, setIsLoading] = useState(true);
@@ -68,15 +69,37 @@ export default function Hero() {
           }}
         >
           {isLoading && (
-            <Rings
-              height="80"
-              width="80"
-              color="#4fa94d"
-              ariaLabel="rings-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-            />
+            // <Rings
+            //   height="80"
+            //   width="80"
+            //   color="#4fa94d"
+            //   ariaLabel="rings-loading"
+            //   wrapperStyle={{}}
+            //   wrapperClass=""
+            //   visible={true}
+            // />
+            <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+            <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+  
+            </div>
+            <div className="text-center">
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                CodeNuggets
+              </h1>
+              <p className="mt-6 text-base leading-6 text-gray-600">
+              Join Our Exclusive Community of Learners Today and Elevate Your Skills to Become a Part of the Top 1% of Programmers.
+              </p>
+              <div className="mt-10 flex items-center justify-center gap-x-6">
+                <a
+                  href="/upskill"
+                  className="z-40 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Register Now &rarr;
+                </a>
+  
+              </div>
+            </div>
+          </div>
           )}
           <Spline scene={sceneUrl} onLoad={handleLoad} style={{ display: isLoading ? 'none' : 'block' }} />
         </Box>

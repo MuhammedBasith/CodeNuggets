@@ -85,7 +85,7 @@ const AdminDashboard = ({ onLogout }) => {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="p-8 bg-gray-100 max-w-screen-lg w-full">
         <div className="mt-10">
-          <h1 className="text-3xl font-bold mb-8 text-center">Pending Registrations</h1>
+          <h1 className="text-3xl font-bold mb-8 text-center">Pending Payments</h1>
           <input
             type="text"
             placeholder="Search by name, email, or phone number"
@@ -125,7 +125,7 @@ const AdminDashboard = ({ onLogout }) => {
             </button>
             <button
               onClick={handleLogout}
-              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-200"
+              className="bg-green-500 text-white px-4 py-2 mx-5 rounded hover:bg-green-600 transition duration-200"
             >
               Logout
             </button>
