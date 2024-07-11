@@ -12,6 +12,7 @@ import { Spinner } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import Countdown from '../component/CountdownComponent'
 import Confetti from '@/components/component/Confetti'
+import { CoolMode } from "@/components/magicui/cool-mode";
 import {
   CardTitle,
   CardDescription,
@@ -21,6 +22,7 @@ import {
   Card,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import ConfettiSideCannons from '../../components/component/SideConfetti'
 
 
 export default function SignupFormDemo() {
@@ -249,7 +251,12 @@ function SignupFormContent() {
             </p>
             <div className="flex items-center justify-center">
 
-              {confettiActive && <Confetti></Confetti>}
+              {confettiActive && (
+                <div>
+                  <Confetti></Confetti>
+                  <ConfettiSideCannons />
+                </div>
+                )}
 
               <Card className="w-full max-w-sm mx-auto p-4 bg-white dark:bg-black text-gray-800 dark:text-gray-200 rounded-lg shadow-lg">
                 <CardHeader className="text-center space-y-4">
@@ -277,13 +284,15 @@ function SignupFormContent() {
                     />
                   </div>
                   <div className="w-full">
-                    <Button
-                      size="sm"
-                      className="w-full bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 dark:focus:ring-gray-700 rounded-md px-3 py-2"
-                      onClick={copyReferralLink}
-                    >
-                      {copied ? 'Link Copied!' : 'Copy Referral Link'}
-                    </Button>
+                    <CoolMode>
+                      <Button
+                        size="sm"
+                        className="w-full bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 dark:focus:ring-gray-700 rounded-md px-3 py-2"
+                        onClick={copyReferralLink}
+                      >
+                        {copied ? 'Link Copied!' : 'Copy Referral Link'}
+                      </Button>
+                    </CoolMode>
                   </div>
                   <div className="w-full">
                     <Button
