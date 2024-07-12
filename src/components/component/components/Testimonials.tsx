@@ -12,42 +12,42 @@ import { useTheme } from '@mui/system';
 const userTestimonials = [
   {
     avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />,
-    name: 'Remy Sharp',
+    name: 'Amit',
     // occupation: 'Senior Engineer',
     testimonial:
       "I had no prior coding experience, but with the help of this platform, I learned Python from scratch and built my first web application. The hands-on projects and supportive community made the learning process enjoyable and rewarding",
   },
   {
     avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />,
-    name: 'Travis Howard',
+    name: 'Abhi',
     // occupation: 'Lead Product Designer',
     testimonial:
       "The personalized feedback and guidance from the instructors were invaluable. I appreciated the structured learning paths that allowed me to progress at my own pace while gaining practical skills that I could apply immediately.",
   },
   {
     avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />,
-    name: 'Cindy Baker',
+    name: 'Rohit',
     // occupation: 'CTO',
     testimonial:
       'Joining the community was the best decision I made for my coding journey. The support from fellow learners and mentors motivated me to keep pushing forward. I now feel confident tackling complex programming tasks.',
   },
   {
     avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/4.jpg" />,
-    name: 'Julia Stewart',
+    name: 'Irfan',
     // occupation: 'Senior Engineer',
     testimonial:
       "The continuous updates and new content kept me engaged and excited to learn. I never felt stagnant and always had something new to explore. This platform truly helped me grow as a programmer.",
   },
   {
     avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/5.jpg" />,
-    name: 'John Smith',
+    name: 'Pavani',
     // occupation: 'Product Designer',
     testimonial:
       "I was looking for a comprehensive Python course, and I'm so glad I found this platform. The instructors are knowledgeable, and the interactive lessons made learning coding enjoyable and accessible.",
   },
   {
     avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/6.jpg" />,
-    name: 'Daniel Wolf',
+    name: 'Parvesh',
     // occupation: 'CDO',
     testimonial:
       "The live sessions were incredibly helpful, allowing me to ask questions and interact with instructors in real-time. The community support was outstanding, and I've made connections that will last beyond the course",
