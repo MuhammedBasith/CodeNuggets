@@ -43,18 +43,14 @@ const Confetti = forwardRef<ConfettiRef, Props>((props, ref) => {
   const instanceRef = useRef<ConfettiInstance | null>(null); // confetti instance
 
   const canvasRef = useCallback(
-    // https://react.dev/reference/react-dom/components/common#ref-callback
-    // https://reactjs.org/docs/refs-and-the-dom.html#callback-refs
     (node: HTMLCanvasElement) => {
       if (node !== null) {
-        // <canvas> is mounted => create the confetti instance
         if (instanceRef.current) return; // if not already created
         instanceRef.current = confetti.create(node, {
           ...globalOptions,
           resize: true,
         });
       } else {
-        // <canvas> is unmounted => reset and destroy instanceRef
         if (instanceRef.current) {
           instanceRef.current.reset();
           instanceRef.current = null;
@@ -64,7 +60,6 @@ const Confetti = forwardRef<ConfettiRef, Props>((props, ref) => {
     [globalOptions],
   );
 
-  // `fire` is a function that calls the instance() with `opts` merged with `options`
   const fire = useCallback(
     (opts = {}) => instanceRef.current?.({ ...options, ...opts }),
     [options],
@@ -93,6 +88,8 @@ const Confetti = forwardRef<ConfettiRef, Props>((props, ref) => {
   );
 });
 
+Confetti.displayName = "Confetti";
+
 interface ConfettiButtonProps extends ButtonProps {
   options?: ConfettiOptions &
     ConfettiGlobalOptions & { canvas?: HTMLCanvasElement };
@@ -115,12 +112,14 @@ function ConfettiButton({ options, children, ...props }: ConfettiButtonProps) {
 
   return (
     <Button
-    className="w-full bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 dark:focus:ring-gray-700 rounded-md px-3 py-2"
-    onClick={handleClick} {...props}>
+      className="w-full bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 dark:focus:ring-gray-700 rounded-md px-3 py-2"
+      onClick={handleClick} {...props}>
       {children}
     </Button>
   );
 }
+
+ConfettiButton.displayName = "ConfettiButton";
 
 export { Confetti, ConfettiButton };
 
