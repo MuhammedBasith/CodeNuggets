@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { ConfettiButton } from "@/components/magicui/confetti";
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { cn } from '@/utils/cn';
@@ -284,15 +285,16 @@ function SignupFormContent() {
                     />
                   </div>
                   <div className="w-full">
+                    <ConfettiButton>
                     <CoolMode>
                       <Button
                         size="sm"
-                        className="w-full bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 dark:focus:ring-gray-700 rounded-md px-3 py-2"
                         onClick={copyReferralLink}
                       >
                         {copied ? 'Link Copied!' : 'Copy Referral Link'}
                       </Button>
                     </CoolMode>
+                    </ConfettiButton>
                   </div>
                   <div className="w-full">
                     <Button
@@ -323,12 +325,13 @@ function SignupFormContent() {
                   </p>
                 </CardContent>
                 <CardFooter className="mt-auto">
-                  <Button
-                    onClick={handleAddToWhatsApp}
-                    className="w-full bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 dark:focus:ring-gray-700 rounded-md px-4 py-2"
-                  >
-                    Add to WhatsApp Group
-                  </Button>
+                  <ConfettiButton>
+                    <Button
+                      onClick={handleAddToWhatsApp}
+                    >
+                      Add to WhatsApp Group
+                    </Button>
+                  </ConfettiButton>
                 </CardFooter>
               </Card>
             </div>
