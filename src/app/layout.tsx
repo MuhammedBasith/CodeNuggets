@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={arimo.className}>
+      <body className={inter.className}>
       <Providers>
         {children}
       </Providers>

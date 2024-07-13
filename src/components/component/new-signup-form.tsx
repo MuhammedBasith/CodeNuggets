@@ -415,6 +415,17 @@ function SignupFormContent() {
                   <Input id="referralCode" placeholder="Referral Code" type="text" value={formData.referralCode || ''} onChange={handleChange} />
                 </LabelInputContainer>
               </div>
+              <div className="flex items-center mb-4">
+                <input
+                  id="terms"
+                  type="checkbox"
+                  className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                  required
+                />
+                <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
+                  I agree to the <a href="/terms" className="text-indigo-600 hover:text-indigo-500">terms and conditions</a>
+                </label>
+              </div>
               <Button
                 className="relative group/btn bg-gradient-to-br mt-2 from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] hover:scale-105 transition-transform duration-300"
                 type="submit"

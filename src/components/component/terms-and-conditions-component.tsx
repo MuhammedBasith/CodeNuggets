@@ -129,10 +129,10 @@ export default function TermsAndConditionsComponent() {
               <h2 className="text-xl font-semibold">Governing Law</h2>
               <ul className="list-disc space-y-2 pl-6">
                 <li>
-                  These Terms and Conditions are governed by and construed in accordance with the laws of [Your Jurisdiction].
+                  These Terms and Conditions are governed by and construed in accordance with the laws of India.
                 </li>
                 <li>
-                  Any disputes arising out of or in connection with these Terms and Conditions shall be subject to the exclusive jurisdiction of the courts of [Your Jurisdiction].
+                  Any disputes arising out of or in connection with these Terms and Conditions shall be subject to the exclusive jurisdiction of the courts of India.
                 </li>
               </ul>
             </section>
