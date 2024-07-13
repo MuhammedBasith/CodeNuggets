@@ -18,7 +18,7 @@ export default function Page() {
           <section>
             <h2 className="text-xl font-semibold">Introduction</h2>
             <p>
-              Overview of CodeNuggets' commitment to protecting your privacy.
+              Overview of CodeNuggets commitment to protecting your privacy.
               Brief description of what this privacy policy covers.
             </p>
           </section>
