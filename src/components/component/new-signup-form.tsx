@@ -381,7 +381,7 @@ function SignupFormContent() {
               Register for Exclusive Python Live Class
             </h1>
             <p className="text-center text-gray-700 dark:text-gray-300 text-sm mb-6">
-              Join our community and unlock exclusive benefits today! Act now to secure your spot
+            Learn, Earn, Repeat. Earn while you learn! Refer 2 friends to our 3-hour Python live class and start earning ₹10 per referral, up to ₹1000! 💸
             </p>
             <form className="my-8" onSubmit={handleSubmit} style={{ marginBottom: '10px' }}>
               <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">

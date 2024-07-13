@@ -7,7 +7,6 @@ export default function TermsAndConditionsComponent() {
 
   const router = useRouter()
 
-
   return (
     <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-3xl">
@@ -17,8 +16,8 @@ export default function TermsAndConditionsComponent() {
             <section>
               <h2 className="text-xl font-semibold">Introduction</h2>
               <p>
-                Welcome to our website. By accessing or using our website, you agree to be bound by these terms and
-                conditions and our privacy policy.
+                Welcome to CodeNuggets. By accessing or using our website and services, you agree to be bound by these
+                terms and conditions and our privacy policy.
               </p>
             </section>
             <section>
@@ -28,8 +27,7 @@ export default function TermsAndConditionsComponent() {
                   By registering for any CodeNuggets Live Class, you agree to comply with and be bound by these Terms and Conditions. If you do not agree with any part of these terms, you should not register for the class.
                 </li>
                 <li>
-                  You are responsible for maintaining the confidentiality of your account and password. You agree to
-                  notify us immediately of any unauthorized use of your account.
+                  You are responsible for maintaining the confidentiality of your account and password. You agree to notify us immediately of any unauthorized use of your account.
                 </li>
               </ul>
             </section>
@@ -115,6 +113,26 @@ export default function TermsAndConditionsComponent() {
               </ul>
             </section>
             <section>
+              <h2 className="text-xl font-semibold">Referral Program</h2>
+              <ul className="list-disc space-y-2 pl-6">
+                <li>
+                  Participants can earn money by referring new students to CodeNuggets Live Classes.
+                </li>
+                <li>
+                  A minimum of two successful referrals is required before earning ₹10 per additional referral, up to a maximum of ₹1000 per person.
+                </li>
+                <li>
+                  Referrals are considered successful only when the referred students complete their registration and payment.
+                </li>
+                <li>
+                  CodeNuggets reserves the right to verify the validity of referrals and to withhold payments if fraudulent activity is suspected.
+                </li>
+                <li>
+                  CodeNuggets reserves the right to modify or terminate the referral program at any time without prior notice.
+                </li>
+              </ul>
+            </section>
+            <section>
               <h2 className="text-xl font-semibold">Liability</h2>
               <ul className="list-disc space-y-2 pl-6">
                 <li>
@@ -154,12 +172,11 @@ export default function TermsAndConditionsComponent() {
         </div>
         <div className="mt-8 flex justify-center">
           <Button
-          onClick={() => {router.back()}}
-          className="relative group/btn bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] hover:scale-105 transition-transform duration-300"
+            onClick={() => {router.back()}}
+            className="relative group/btn bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] hover:scale-105 transition-transform duration-300"
           >Back</Button>
         </div>
       </div>
     </div>
-
   )
 }
