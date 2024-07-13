@@ -65,12 +65,14 @@ function SignupFormContent() {
 
 
   const shareOnWhatsApp = () => {
-    const whatsappUrl = `https://api.whatsapp.com/send?text=Join me in the Python live class! Use my referral code: ${formData.email.split('@')[0]}`;
+    const referralID = formData.email.split('@')[0];
+    const whatsappUrl = `https://api.whatsapp.com/send?text=Hey! Don’t miss out on this exclusive 3-hour live hands-on Python class with CodeNuggets! Learn Python from scratch and take your software career to the next level. Click the link to sign up directly: https://codenuggets.studio/upskill?ref=${referralID}. Here’s the best part: For e friend you refer,very you can earn up to ₹1000! 💰 Start earning while you learn! Hurry, spots are limited!`;
     window.open(whatsappUrl, '_blank');
   };
-
+  
   const shareOnInstagram = () => {
-    const instagramUrl = `https://www.instagram.com/?text=Join me in the Python live class! Use my referral code: ${formData.email.split('@')[0]}`;
+    const referralID = formData.email.split('@')[0];
+    const instagramUrl = `https://www.instagram.com/?text=Hey! Don’t miss out on this exclusive 3-hour live hands-on Python class with CodeNuggets! Learn Python from scratch and take your software career to the next level. Click the link to sign up directly: https://codenuggets.studio/upskill?ref=${referralID}. Here’s the best part: For every friend you refer, you can earn up to ₹1000! 💰 Start earning while you learn! Hurry, spots are limited!`;
     window.open(instagramUrl, '_blank');
   };
 

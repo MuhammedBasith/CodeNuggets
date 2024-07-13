@@ -116,7 +116,7 @@ export default function TermsAndConditionsComponent() {
               <h2 className="text-xl font-semibold">Referral Program</h2>
               <ul className="list-disc space-y-2 pl-6">
                 <li>
-                  Participants can earn money by referring new students to CodeNuggets Live Classes.
+                  Payment Completed Participants can earn money by referring new students to CodeNuggets Live Classes.
                 </li>
                 <li>
                   A minimum of two successful referrals is required before earning ₹10 per additional referral, up to a maximum of ₹1000 per person.
