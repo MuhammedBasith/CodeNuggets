@@ -13,7 +13,7 @@ import {
     {
       Icon: SketchLogoIcon,
       name: "Earn Money While Learning",
-      description: "We believe learning should be rewarding, so, earn more than ₹500 in cash while learning with us.",
+      description: "We believe learning should be rewarding, so, earn upto ₹1000 in cash while learning with us.",
       href: "/",
       cta: "Learn more",
       background: <img className="absolute -right-20 -top-20 opacity-60" />,
