@@ -4,10 +4,21 @@ import {
     FileTextIcon,
     GlobeIcon,
     InputIcon,
+    SketchLogoIcon,
   } from "@radix-ui/react-icons";
   import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
   
   const features = [
+    
+    {
+      Icon: SketchLogoIcon,
+      name: "Earn Money While Learning",
+      description: "We believe learning should be rewarding, so, earn more than ₹500 in cash while learning with us.",
+      href: "/",
+      cta: "Learn more",
+      background: <img className="absolute -right-20 -top-20 opacity-60" />,
+      className: "lg:row-start-2 lg:row-end-4 lg:col-start-2 lg:col-end-3",
+    },
     {
       Icon: FileTextIcon,
       name: "Comprehensive Learning Resources",
