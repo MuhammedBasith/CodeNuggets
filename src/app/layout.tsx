@@ -3,6 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from './providers'
 
+import { Arimo } from 'next/font/google'
+import { IBM_Plex_Sans } from 'next/font/google'
+
+const arimo = Arimo({
+  subsets: ['latin'],
+  display: 'swap',
+})
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={arimo.className}>
       <Providers>
         {children}
       </Providers>
