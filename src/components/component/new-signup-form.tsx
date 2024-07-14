@@ -336,7 +336,7 @@ function SignupFormContent() {
                     </ol>
                   </div>
                   <p className="text-sm mt-3 text-center mt-6">
-                    <strong className="text-red-600">Your payment is still pending.</strong> Click the button below to complete your payment via WhatsApp where our team will guide you through the process. After payment, you'll be added to a special WhatsApp group.
+                    <strong className="text-red-600">Your payment is still pending.</strong> Click the button below to complete your payment via WhatsApp where our team will guide you through the process. After payment, you’ll be added to a special WhatsApp group.
                   </p>
                 </CardContent>
                 <CardFooter className="mt-auto">
