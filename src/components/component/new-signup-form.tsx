@@ -66,7 +66,7 @@ function SignupFormContent() {
 
   const shareOnWhatsApp = () => {
     const referralID = formData.email.split('@')[0];
-    const whatsappUrl = `https://api.whatsapp.com/send?text=Hey! Don’t miss out on this exclusive 3-hour live hands-on Python class with CodeNuggets! Learn Python from scratch and take your software career to the next level. Click the link to sign up directly: https://codenuggets.studio/upskill?ref=${referralID}. Here’s the best part: For every friend you refer,very you can earn up to ₹1000! 💰 Start earning while you learn! Hurry, spots are limited!`;
+    const whatsappUrl = `https://api.whatsapp.com/send?text=Hey!%0D%0ADon’t miss out on this exclusive 3-hour live hands-on Python class with CodeNuggets!%0D%0ALearn Python from scratch and take your software career to the next level.%0D%0AClick the link to sign up directly: https://codenuggets.studio/upskill?ref=${referralID}.%0D%0AHere’s the best part: For every friend you refer, you can earn up to ₹1000! 💰%0D%0AStart earning while you learn! Hurry, spots are limited!`;
     window.open(whatsappUrl, '_blank');
   };
   
