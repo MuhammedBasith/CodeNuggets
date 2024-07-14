@@ -332,7 +332,7 @@ function SignupFormContent() {
                       <li>Your friends sign up using your referral link.</li>
                       <li>Once they complete their payment, you start earning rewards.</li>
                       <li>Receive an email notification with the amount earned for each successful referral.</li>
-                      <li>Earn up to ₹1000 by referring. 💸</li>
+                      <li>Earn up to ₹1000 by referring your friends. 💸</li>
                     </ol>
                   </div>
                   <p className="text-sm mt-3 text-center mt-6">
