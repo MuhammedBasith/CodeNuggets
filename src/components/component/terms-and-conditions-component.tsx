@@ -125,6 +125,12 @@ export default function TermsAndConditionsComponent() {
                   Referrals are considered successful only when the referred students complete their registration and payment.
                 </li>
                 <li>
+                  Disbursement of earnings will be processed at the end.
+                </li>
+                <li>
+                  Earnings are subject to applicable taxes and deductions as per local laws.
+                </li>
+                <li>
                   CodeNuggets reserves the right to verify the validity of referrals and to withhold payments if fraudulent activity is suspected.
                 </li>
                 <li>
