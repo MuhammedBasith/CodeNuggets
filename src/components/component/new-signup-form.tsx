@@ -77,7 +77,7 @@ function SignupFormContent() {
   };
 
   const handleAddToWhatsApp = () => {
-    const whatsappLink = `https://wa.me/919544716586?text=Hi%2C%20my%20name%20is%20${formData.fullname}%2C%20Add%20me%20to%20the%20Exclusive%20WhatsApp%20Group%2C`;
+    const whatsappLink = `https://wa.me/918547812187?text=Hi%2C%20my%20name%20is%20${formData.fullname}%2C%20Add%20me%20to%20the%20Exclusive%20WhatsApp%20Group%2C`;
     window.location.href = whatsappLink;
   };
 
