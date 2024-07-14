@@ -288,14 +288,14 @@ function SignupFormContent() {
                   </div>
                   <div className="w-full">
                     <ConfettiButton>
-                    <CoolMode>
-                      <Button
-                        size="sm"
-                        onClick={copyReferralLink}
-                      >
-                        {copied ? 'Link Copied!' : 'Copy Referral Link'}
-                      </Button>
-                    </CoolMode>
+                      <CoolMode>
+                        <Button
+                          size="sm"
+                          onClick={copyReferralLink}
+                        >
+                          {copied ? 'Link Copied!' : 'Copy Referral Link'}
+                        </Button>
+                      </CoolMode>
                     </ConfettiButton>
                   </div>
                   <div className="w-full">
@@ -325,17 +325,31 @@ function SignupFormContent() {
                   <p className="text-sm mt-3 text-center">
                     <strong className="text-red-600">Important:</strong> Do not forget to copy the link or remember the code as it is crucial to earn money.
                   </p>
+                  <div className="mt-4">
+                    <p className="text-lg font-bold text-center mt-6">Referral Program Steps:</p>
+                    <ol className="list-decimal list-inside space-y-2 text-left mt-3 mb-6">
+                      <li>Share your unique referral link with friends.</li>
+                      <li>Your friends sign up using your referral link.</li>
+                      <li>Once they complete their payment, you start earning rewards.</li>
+                      <li>Receive an email notification with the amount earned for each successful referral.</li>
+                      <li>Earn up to ₹1000 by referring. 💸</li>
+                    </ol>
+                  </div>
+                  <p className="text-sm mt-3 text-center mt-6">
+                    <strong className="text-red-600">Your payment is still pending.</strong> Click the button below to complete your payment via WhatsApp where our team will guide you through the process. After payment, you'll be added to a special WhatsApp group.
+                  </p>
                 </CardContent>
                 <CardFooter className="mt-auto">
                   <ConfettiButton>
                     <Button
                       onClick={handleAddToWhatsApp}
                     >
-                      Add to WhatsApp Group
+                      Complete Payment
                     </Button>
                   </ConfettiButton>
                 </CardFooter>
               </Card>
+
             </div>
           </>
         ) : confirmationPage ? (
