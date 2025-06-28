@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CodeNuggets - Become a Top 1% Engineer",
     description: "Join our exclusive community of learners today and elevate your skills to become a part of the top 1% of programmers.",
-    url: "https://codenuggets.vercel.app",
+    url: "https://codenuggets.basith.me",
     siteName: "CodeNuggets",
     images: [
       {
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description: 'Join our exclusive community of learners today and elevate your skills to become a part of the top 1% of programmers.',
     images: ['/opengraph.png'],
   },
-  metadataBase: new URL('https://codenuggets.vercel.app'),
+  metadataBase: new URL('https://codenuggets.basith.me'),
 };
 
 export default function RootLayout({
